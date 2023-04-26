@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:200');
+
+#header {
+    background-image: url('../images/music-bg-4.jpg');
+    background-size:cover;
+    -webkit-animation: slidein 15s;
+    animation: slidein 15s;
+
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+
+    -webkit-animation-direction: alternate;
+    animation-direction: alternate;
+}
+
+body {
+  background-color: var(--dark-brown);
+}
+
+@-webkit-keyframes slidein {
+  from {background-position: -50px; background-size:900px; }
+  to {background-position: -300px;background-size:900px;}
+}
+
+@keyframes slidein {
+  from {background-position: -50px;background-size:900px; }
+  to {background-position: -300px;background-size:900px;}
+}
+
+.center
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  z-index: 1;
+  margin-top: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(255, 141, 2, 0.086);
+  border-radius: 3px;
+  height:500px;
+}
+
+.center h1{
+  text-align:center;
+  color:white;
+  font-family: 'Source Code Pro', monospace;
+  text-transform:uppercase;
+}
+
+:root {
+    --green: rgb(92,180,101);
+    --yellow: rgb(246,200,68);
+    --pale-yellow: rgb(255, 234, 176);
+    --dark-yellow:rgb(227,174,64);
+    --orange: rgb(239,135,78);
+    --red: rgb(236,97,86);
+    --dark-red: rgb(152, 38, 30);
+    --brown: rgb(159,126,91);
+    --dark-brown: rgb(56, 50, 45);
+}
+
+.navbar {
+    border-bottom: 20px;
+    font-family: 'Nunito', sans-serif;
+    font-size: large;
+    background: var(--dark-brown);
+    color:black;
+    padding-left: 10px;
+}
+
+#brand-text {
+  font-family: 'Delicious Handrawn', cursive;
+  color:white;
+}
+
+#foreground {
+  z-index: 2;
+  font-family: 'Poppins', sans-serif;
+  margin-top: 600px;
+  background-color: var(--dark-brown);
+  color:white;
+}
+
+.nav-link {
+  font-family: 'Delicious Handrawn', cursive;
+  color:white;
+}
+
+.nav-link :hover {
+  font-family: 'Delicious Handrawn', cursive;
+  color:rgb(147, 218, 202);
+}

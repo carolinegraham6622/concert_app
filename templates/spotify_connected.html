@@ -7,9 +7,7 @@
 		
 		<div class="center" id="header">
 			<h1>
-			Book Concerts
-            <br>
-            Found just for YOU
+                Welcome, {{ results['current_user']['display_name'] }}!
 			</h1>
 		</div>
 		
@@ -45,93 +43,44 @@
 		</nav>
 		<!--Main Navigation-->
 
-        <!-- Main Features -->
-        <div class="container" style="padding: 10px;">
-            <section class="fadeIn">
-            
-                <!--Grid row-->
-                <div class="row pt-2">
-            
-                    <!--Grid column-->
-                    <div class="col-lg-5 text-center">
-                        <img src="../static/images/concert-icon-2.png" alt="concert-icon" class="img-fluid z-depth-0">
-                    </div>
-                    <!--Grid column-->
-                
-                    <!--Grid column-->
-                    <div class="col-lg-7">
+        <!-- Body -->
 
-                        <!--Section heading-->
-                        <h2 class="py-5 font-weight-bold text-left">Main features</h2>
-                
-                        <!--Grid row-->
-                        <div class="row pb-3">
-                        <div class="col-2 col-md-1">
-                            <i class="fa fa-search fa-lg indigo-text"></i>
-                        </div>
-                        <div class="col-10">
-                            <h5 class="font-weight-bold text-left mb-3">Search for Concerts in your Area</h5>
-                            <p class="text-left">...</p>
-                        </div>
-                        </div>
-                        <!--Grid row-->
-                
-                        <!--Grid row-->
-                        <div class="row pb-3">
-                        <div class="col-2 col-md-1">
-                            <i class="fa fa-music fa-lg indigo-text"></i>
-                        </div>
-                        <div class="col-10">
-                            <h5 class="font-weight-bold text-left mb-3">Get Personalized Concert Recommendations</h5>
-                            <p class="text-left">...</p>
-                        </div>
-                        </div>
-                        <!--Grid row-->
-                
-                        <!--Grid row-->
-                        <div class="row pb-3">
-                        <div class="col-2 col-md-1">
-                            <i class="fa fa-user fa-lg indigo-text"></i>
-                        </div>
-                        <div class="col-10">
-                            <h5 class="font-weight-bold text-left mb-3">Discover New Artists</h5>
-                            <p class="text-left">...</p>
-                        </div>
-                        </div>
-                        <!--Grid row-->
 
-                </div>
-                <!--Grid column-->
-            
-                </div>
-                <!--Grid row-->
-            </section>
-        </div>
-        <!-- Main Features -->
 
-        <div class="row" style="height:100px"></div>
-
-        <!-- Connect Spotify -->
         <div class="container" style="padding: 50px;">
             <section class="fadeIn">
-                <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-5">
-                        <h3>
-                            Want to get personalized concert recommendations based on your Spotify listenining history?
-                        </h3>
-                    </div>
+            
+                <!--Grid row-->
 
-                    <div class="col-md-5" style="text-align: center;">
-                    <button type="button" class="btn btn-outline-success btn-floating btn-rounded btn-lg" data-mdb-ripple-color="dark" onclick="spotifyConnect()">
-                        <i class="fa fa-spotify"></i> Connect Your Spotify Account
-                    </button>
-                    </div>
-                    <div class="col-md-1"></div>
+                <h1> Recommended Genres </h1>
+                <div class="row container">
+                    <p>
+                    {% for genre in results['rec_genre']['genres'] %}
+                        <span class="badge badge-pill" style="background-color: rgb(168, 121, 106);">{{ genre }}</span> 
+                    {% endfor %}
+                    </p>
                 </div>
-                        
+
+                <h1> Recently Played </h1>
+                <div class="row pt-2">
+                    <p>
+                    {% for item in results['current_user_recently_played']['items'] %}
+                    <span class="badge badge-pill" style="background-color: rgb(168, 121, 106);">{{ item['track']['name'] }} by {{ item['track']['album']['artists'][0]['name'] }} </span> 
+                    {% endfor %}
+                    </p>
+                </div>
+
+                <h1> Your Top Tracks </h1>
+                <div class="row pt-2">
+                    <p>
+                    {% for item in results['top_tracks']['items'] %}
+                    <span class="badge badge-pill" style="background-color: rgb(168, 121, 106);">{{ item['name'] }} by {{ item['artists'][0]['name'] }}</span> 
+                    {% endfor %}
+                    </p>
+                </div>
             </section>
         </div>
+        <!-- Body -->
 
 		</div>
 	</div>
@@ -209,11 +158,5 @@
         <!-- Copyright -->
     </footer>
   <!-- Footer -->
-
-<script>
-	function spotifyConnect() {
-        location.href = "/spotify";
-    }
-</script>
 
 {% endblock %}

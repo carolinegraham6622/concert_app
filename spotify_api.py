@@ -2,7 +2,6 @@ import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 import credentials
 
-# scope = "user-read-recently-played"
 scope = "user-read-recently-played, user-library-read, user-follow-read, user-top-read"
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=credentials.client_id, client_secret=credentials.client_secret, redirect_uri=credentials.redirect_url, scope=scope))
 

@@ -7,10 +7,9 @@
 		
 		<div class="center" id="header">
 			<h1>
-			Book Concerts
-            <br>
-            Found just for YOU
+			Search for A Concert Near You
 			</h1>
+            {{ form }}
 		</div>
 		
 	</div>
@@ -48,63 +47,56 @@
         <!-- Main Features -->
         <div class="container" style="padding: 10px;">
             <section class="fadeIn">
-            
-                <!--Grid row-->
-                <div class="row pt-2">
-            
-                    <!--Grid column-->
-                    <div class="col-lg-5 text-center">
-                        <img src="../static/images/concert-icon-2.png" alt="concert-icon" class="img-fluid z-depth-0">
+                <form action="{{get_concerts}}">
+                    <div class="row">
+                        <div class="col-2"></div>
+                        <div class="col-2">
+                            <label class="col-2 col-form-label">State</label>
+                            <select class="form-control">
+                                <option>New York</option>
+                                <option>California</option>
+                                <option>Pennsylvania</option>
+                                <option>New Jersey</option>
+                                <option>Florida</option>
+                            </select>
+                        </div>
+                        
+                        <div class="col-2">
+                            <label class="col-2 col-form-label">Genre</label>
+                            <select class="form-control">
+                                <option>Pop</option>
+                                <option>Rock</option>
+                                <option>Blues</option>
+                                <option>Hip-Hop</option>
+                                <option>Techno</option>
+                                <option></option>
+                            </select>
+                        </div>
+                        
+                        <div class="col-2">
+                            <label class="col-4 col-form-label">Start Date</label>
+                            <input class="form-control" placeholder="YYYY-MM-DDTHH:MM:SSZ" value="2023-01-01T00:00:01Z">
+                                
+                            </input>
+                        </div>
+                        
+                        <div class="col-2">
+                            <label class="col-3 col-form-label">End Date</label>
+                            <input class="form-control" placeholder="YYYY-MM-DDTHH:MM:SSZ" value="2023-01-01T00:00:01Z">
+                            </input>
+                        </div>
+                        <div class="col-2"></div>
+
+
+                        <div class="row" style="padding-top: 40px;">
+                            <div class="col-2"></div>
+                            <div class="col-2">
+                                <button type="submit" class="btn btn-primary" id="search-btn">Search</button>
+                            </div>
+                        </div>
                     </div>
-                    <!--Grid column-->
-                
-                    <!--Grid column-->
-                    <div class="col-lg-7">
-
-                        <!--Section heading-->
-                        <h2 class="py-5 font-weight-bold text-left">Main features</h2>
-                
-                        <!--Grid row-->
-                        <div class="row pb-3">
-                        <div class="col-2 col-md-1">
-                            <i class="fa fa-search fa-lg indigo-text"></i>
-                        </div>
-                        <div class="col-10">
-                            <h5 class="font-weight-bold text-left mb-3">Search for Concerts in your Area</h5>
-                            <p class="text-left">...</p>
-                        </div>
-                        </div>
-                        <!--Grid row-->
-                
-                        <!--Grid row-->
-                        <div class="row pb-3">
-                        <div class="col-2 col-md-1">
-                            <i class="fa fa-music fa-lg indigo-text"></i>
-                        </div>
-                        <div class="col-10">
-                            <h5 class="font-weight-bold text-left mb-3">Get Personalized Concert Recommendations</h5>
-                            <p class="text-left">...</p>
-                        </div>
-                        </div>
-                        <!--Grid row-->
-                
-                        <!--Grid row-->
-                        <div class="row pb-3">
-                        <div class="col-2 col-md-1">
-                            <i class="fa fa-user fa-lg indigo-text"></i>
-                        </div>
-                        <div class="col-10">
-                            <h5 class="font-weight-bold text-left mb-3">Discover New Artists</h5>
-                            <p class="text-left">...</p>
-                        </div>
-                        </div>
-                        <!--Grid row-->
-
-                </div>
-                <!--Grid column-->
-            
-                </div>
-                <!--Grid row-->
+                    
+                </form>
             </section>
         </div>
         <!-- Main Features -->
@@ -214,6 +206,10 @@
 	function spotifyConnect() {
         location.href = "/spotify";
     }
+
+    $( "#search-btn" ).on( "click", function() {
+        alert( "Handler for `click` called." );
+    } );
 </script>
 
 {% endblock %}
