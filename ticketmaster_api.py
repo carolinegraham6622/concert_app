@@ -1,21 +1,27 @@
 import ticketpy
 import credentials
 
-def get_concerts(genre, state, start, end):
+tm_client = ticketpy.ApiClient(credentials.consumer_key)
 
-    tm_client = ticketpy.ApiClient(credentials.consumer_key)
+# venues 
+# venues = tm_client.venues.find(keyword="Tabernacle").all()
+# for v in venues:
+#     print("Name: {} / City: {}".format(v.name, v.city))
 
-    # venues 
-    # venues = tm_client.venues.find(keyword="Tabernacle").all()
-    # for v in venues:
-    #     print("Name: {} / City: {}".format(v.name, v.city))
+# events by genre
+pages = tm_client.events.find(
+    classification_name='Pop',
+    state_code='PA',
+    start_date_time='2023-05-01T20:00:00Z',
+    end_date_time='2023-12-01T20:00:00Z'
+)
 
-    # events by genre
-    pages = tm_client.events.find(
-        classification_name=genre,
-        state_code=state,
-        start_date_time=start,
-        end_date_time=end
-    )
+for page in pages:
+    for event in page:
+        print(event)
 
-    return pages
+        # get classification (aka genre ? )
+# Options : rock, country, pop, etc...
+# get state 
+# get start date 
+# get end date 

@@ -1,3 +1,4 @@
+from asyncio import sleep
 from flask import Flask, redirect, render_template, request
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
@@ -83,13 +84,13 @@ def spotify():
 
    return render_template('./spotify_connected.html', results = results)
 
-@app.route('/get_concerts', methods=['POSTS'])
+@app.route('/get_concerts')
 def get_concerts():
     
-   genre = request.args.get('genre')
-   state = request.args.get('state')
-   start = request.args.get('start')
-   end = request.args.get('end')
+   genre = str(request.args.get('genre'))
+   state = str(request.args.get('state'))
+   start = str(request.args.get('start'))
+   end = str(request.args.get('end'))
 
    tm_client = ticketpy.ApiClient(credentials.consumer_key)
 
@@ -101,7 +102,26 @@ def get_concerts():
       end_date_time=end
    )
 
-   return redirect('/spotify')
+   # pages = tm_client.events.find(
+   #    classification_name='Pop',
+   #    state_code='PA',
+   #    start_date_time='2023-05-01T20:00:00Z',
+   #    end_date_time='2023-12-01T20:00:00Z'
+   # )
+
+   events = []
+
+   for page in pages:
+      for event in page:
+         try:
+            print(event.status)
+            events.append(event)
+
+         except:
+            break
+      break
+
+   return render_template('./concerts.html', events=events)
 
 if __name__ == '__main__':
    app.run()
